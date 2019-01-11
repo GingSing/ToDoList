@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getTodos, removeTodo } from '../../_actions/todoActions';
+import { getTodos, removeTodo, changeTodo } from '../../_actions/todoActions';
+import { Link } from 'react-router-dom';
 import { AddBar, TodoFeed } from '../../components';
 
 import './Home.css';
@@ -12,12 +13,15 @@ class Home extends Component{
     }
 
     render(){
-        let { todos, removeTodo } = this.props;
+        let { todos, removeTodo, changeTodo } = this.props;
         return(
             <div className="home">
-                <h3>TodoList</h3>
+                <div className="homeHeader">
+                    <h1><Link to="/">Todo List</Link></h1>
+                    <h3><Link to="/logs">Logs</Link></h3>
+                </div>
                 <AddBar />
-                <TodoFeed todos={todos} removeTodo={removeTodo}/>
+                <TodoFeed todos={todos} removeTodo={removeTodo} changeTodo={changeTodo}/>
             </div>
         );
     }
@@ -34,6 +38,9 @@ const mapDispatchToProps = dispatch => ({
     },
     removeTodo: (id) => {
         dispatch(removeTodo(id));
+    },
+    changeTodo: (id, todo) => {
+        dispatch(changeTodo(id, todo));
     }
 })
 

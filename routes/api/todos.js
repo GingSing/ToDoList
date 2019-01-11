@@ -25,13 +25,13 @@ const addTodo = (req, res) => {
 }
 
 const changeTodo = (req, res) => {
-    let { id, todo } = req.body;
+    let { id, newTodo } = req.body;
     Todo.findOne({_id:id})
-        .then(result => {
-            result.todo = todo;
+        .then(async result => {
+            result.todo = newTodo;
             result.date_modified = Date.now();
-            result.save();
-            res.status(200).json(result);
+            await result.save();
+            getAllTodos(req, res);
         })
         .catch(err => res.status(400).json({err}));
 }

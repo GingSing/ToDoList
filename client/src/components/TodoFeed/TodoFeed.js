@@ -1,40 +1,32 @@
 import React, { Component } from 'react';
+import TodoFeedCard from './TodoFeedCard';
 
 import './TodoFeed.css';
 
 class TodoFeed extends Component{
     render(){
-        let { todos, removeTodo } = this.props;
+        const monthNames = ["January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"];
+        let { todos, removeTodo, changeTodo } = this.props;
+        let month;
         return(
             <div className="todoFeed">
                 <ul className="todoFeedList">
                     {
-                        todos && todos.map((todo, key) => 
-                            <TodoFeedCard todo={todo} removeTodo={removeTodo}/>
-                        )
+                        todos && todos.map((todo, key) => {
+                            let todoDate = new Date(todo.date_added);
+                            if(month === undefined || (todoDate.getMonth() + 1) % 10 === month){
+                                month=todoDate.getMonth();
+                                return <li key={key}><h2>{`${monthNames[todoDate.getMonth()]} ${todoDate.getFullYear()} `}</h2>
+                                    <TodoFeedCard todo={todo} removeTodo={removeTodo} changeTodo={changeTodo}/></li>;
+                            }
+                            return <li key={key}><TodoFeedCard todo={todo} removeTodo={removeTodo} changeTodo={changeTodo}/></li>;
+                        })
                     }
                 </ul>
             </div>
         );
     }
-}
-
-const TodoFeedCard = (props) => {
-    let {todo, removeTodo} = props;
-    function removeTodoWithId(){
-        removeTodo(todo._id);
-    }
-    return(
-        <React.Fragment>
-            <li className="todoFeedCard">
-                <label>{todo.todo}</label>
-                <div className="todoControls">
-                    <button>&#10000;</button>
-                    <button onClick={removeTodoWithId}>&#10004;</button>
-                </div>
-            </li>
-        </React.Fragment>
-    );
 }
 
 export default TodoFeed;
