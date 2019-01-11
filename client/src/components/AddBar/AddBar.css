@@ -1,0 +1,31 @@
+.todoForm{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+#todoInput{
+    height: 20px;
+    padding: 5px;
+    outline: none;
+}
+
+#todoInput:focus{
+    border-color: orange;
+}
+
+#todoInput:active{
+    border-color: orange;
+}
+
+.addButton{
+    border: none;
+    background-color: white;
+    cursor: pointer;
+    border: 1px solid white;
+    outline: none;
+}
+
+.addButton:hover, .addButton:active{
+    border: 1px solid orange;
+}

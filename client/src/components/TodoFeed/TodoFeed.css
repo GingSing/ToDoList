@@ -1,0 +1,31 @@
+.todoFeed{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.todoFeedList{
+    width: 40%;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+.todoFeedCard{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2%;
+}
+
+.todoControls button{
+    cursor: pointer;
+    border: none;
+    background-color: white;
+    border: 1px solid white;
+    outline: none;
+}
+
+.todoControls button:hover{
+    border: 1px solid orange;
+}
