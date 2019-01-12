@@ -22,7 +22,7 @@ app.use('/api', todos);
 
 //Serve static assets if in production
 if(process.env.NODE_ENV === 'production'){
-    app.use(express.statis('client/build'));
+    app.use(express.static('client/build'));
     
     //Set static folder
     app.get('*', (req, res) => {
