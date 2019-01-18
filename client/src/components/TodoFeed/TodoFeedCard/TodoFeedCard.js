@@ -26,7 +26,6 @@ class TodoFeedCard extends Component{
     changeTodoWrapper(){
         let { shouldChange, newTodo } = this.state;
         let { todo, changeTodo } = this.props;
-        console.log()
         if(shouldChange){
             changeTodo(todo._id, newTodo);
             this.setState({

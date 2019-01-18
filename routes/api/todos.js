@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const Todo = require('../../models/Todo');
+const TodoLog = require('../../models/TodoLog');
 
 const getAllTodos = (req, res) => {
     Todo.find()
@@ -38,9 +39,18 @@ const changeTodo = (req, res) => {
 
 const removeTodo = (req, res) => {
     let { id } = req.body;
-    Todo.deleteOne({_id:id})
-        .then(() => {
-            getAllTodos(req, res);
+    Todo.findOne({_id:id})
+        .then(todo => {
+            const newTodoLog = new TodoLog({
+                todo: todo.todo,
+                date_modified: todo.date_modified,
+                date_added: todo.date_added
+            })
+            todo.delete();
+            newTodoLog.save()
+                .then(() => {
+                    getAllTodos(req, res);
+                })
         })
         .catch(err => res.status(400).json({err}));
 }

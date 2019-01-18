@@ -1,0 +1,42 @@
+.logsFeed{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+.logsFeedLabels{
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.logsFeedLabels label{
+    width: 30%;
+    text-align: center;
+}
+
+.logsFeedList{
+    width: 100%;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.logsFeedList li{
+    display: flex;
+    justify-content: center;
+}
+
+.logsFeedCard{
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.logsFeedCard span{
+    width: 30%;
+    text-align: center;
+}

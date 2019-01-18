@@ -6,6 +6,7 @@ const path = require('path');
 const app = express();
 
 const todos = require('./routes/api/todos');
+const logs = require('./routes/logs/todoLogs');
 
 const db = process.env.MONGO_URI || require('./config').mongoURI;
 
@@ -19,6 +20,7 @@ mongoose
 app.use(bodyParser.json());
 
 app.use('/api', todos);
+app.use('/logs', logs);
 
 //Serve static assets if in production
 if(process.env.NODE_ENV === 'production'){
